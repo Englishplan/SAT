@@ -23,4 +23,70 @@
 
     <script src="script.js"></script>
 </body>
+</html><div id="test-selection">
+    <p>Select a test set:</p>
+    <select id="test-dropdown">
+        <option value="1">Test Set 1</option>
+        <option value="2">Test Set 2</option>
+        <option value="3">Test Set 3</option>
+        <option value="4">Test Set 4</option>
+        <option value="5">Test Set 5</option>
+        <option value="6">Test Set 6</option>
+        <option value="7">Test Set 7</option>
+        <option value="8">Test Set 8</option>
+        <option value="9">Test Set 9</option>
+        <option value="10">Test Set 10</option>
+    </select>
+    <button onclick="loadSelectedTest()">Start Test</button>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAT Digital Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>SAT Digital Reading & Writing Simulation</h1>
+
+        <!-- Password Entry -->
+        <div id="password-container">
+            <p>Enter your access code:</p>
+            <input type="password" id="access-code">
+            <button onclick="checkPassword()">Submit</button>
+        </div>
+
+        <!-- Quiz Section (Hidden by Default) -->
+        <div id="quiz-container" style="display: none;">
+            <p id="question-text">Loading question...</p>
+            <div id="options-container"></div>
+            <button id="next-btn">Next</button>
+        </div>
+
+        <div id="result-container" style="display: none;">
+            <h2>Your Estimated SAT Score:</h2>
+            <p id="score-output"></p>
+            <button onclick="restartQuiz()">Try Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        function checkPassword() {
+            const correctCode = "SAT123";  // Change this to any secret code you want
+            let userCode = document.getElementById("access-code").value;
+
+            if (userCode === correctCode) {
+                document.getElementById("password-container").style.display = "none";
+                document.getElementById("quiz-container").style.display = "block";
+            } else {
+                alert("Incorrect code. Please try again.");
+            }
+        }
+    </script>
+</body>
 </html>
+
