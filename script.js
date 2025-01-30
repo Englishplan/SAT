@@ -59,4 +59,48 @@ function restartQuiz() {
     loadQuestion();
 }
 
-loadQuestion();
+loadQuestion();const testSets = {
+    1: [
+        { question: "What is the capital of France?", options: ["Berlin", "Madrid", "Paris", "Lisbon"], answer: "Paris" },
+        { question: "Which planet is known as the Red Planet?", options: ["Earth", "Venus", "Mars", "Jupiter"], answer: "Mars" }
+    ],
+    2: [
+        { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], answer: "4" },
+        { question: "Which gas do plants absorb?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], answer: "Carbon Dioxide" }
+    ],
+    // Add more test sets here...
+};
+
+let selectedTest = [];
+
+function loadSelectedTest() {
+    let testNumber = document.getElementById("test-dropdown").value;
+    selectedTest = testSets[testNumber];
+    currentQuestionIndex = 0;
+    correctAnswers = 0;
+    loadQuestion();
+}
+
+function loadQuestion() {
+    if (currentQuestionIndex < selectedTest.length) {
+        let q = selectedTest[currentQuestionIndex];
+        document.getElementById("question-text").textContent = q.question;
+        document.getElementById("options-container").innerHTML = "";
+
+        q.options.forEach(option => {
+            let button = document.createElement("button");
+            button.textContent = option;
+            button.onclick = () => {
+                if (option === q.answer) {
+                    correctAnswers++;
+                }
+                currentQuestionIndex++;
+                loadQuestion();
+            };
+            document.getElementById("options-container").appendChild(button);
+        });
+    } else {
+        showResults();
+    }
+}
+
